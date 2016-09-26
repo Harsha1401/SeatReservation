@@ -15,8 +15,7 @@
         <br>
          <span ng-show="myForm.name.$touched && myForm.name.$invalid" class="help-block">Name is Required!</span>
          <span ng-show="myForm.numberofseats.$touched && myForm.numberofseats.$invalid" class="help-block">Select seats between 0-{{availableSeats}}</span>
-    </form>
-</div>
+
 
 
 <div ng-if="enableDisbaleLayout">
@@ -47,9 +46,10 @@
 
     <div class="buttons">
         <button class="btn btn-primary" ng-click="clearSelected()">Clear</button>
-        <button class="btn btn-primary" ng-click="confirmBooking()">confirm Booking</button>
+        <button class="btn btn-primary" ng-click="confirmBooking(myForm)">confirm Booking</button>
     </div>
-
+  </form>
+  </div>
 </div>
 
   <div ng-if="bookingDetails.length>0">

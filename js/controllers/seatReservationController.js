@@ -2,7 +2,7 @@ seatReservationApp.controller('seatReservationController',function($scope,$windo
 
         $scope.user={
             name:'',
-            numofseats:0
+            numofseats:''
         };
 
         $scope.bookingDetails= JSON.parse($window.localStorage.getItem('bookingDetailsList'))  || [];
@@ -28,7 +28,7 @@ seatReservationApp.controller('seatReservationController',function($scope,$windo
 
         // seat onClick
         $scope.seatClicked = function(seatPos) {
-          
+
             if(!(reserved.indexOf(seatPos) > -1)){
                 var index = selected.indexOf(seatPos);
                     if(index != -1) {
@@ -67,7 +67,7 @@ seatReservationApp.controller('seatReservationController',function($scope,$windo
         }
 
         // show selected
-        $scope.confirmBooking = function() {
+        $scope.confirmBooking = function(form) {
 
           if($scope.user.name !='' && $scope.user.numofseats>0){
             var details ={
@@ -83,9 +83,11 @@ seatReservationApp.controller('seatReservationController',function($scope,$windo
                 $window.localStorage.setItem('reservedDetailsList',JSON.stringify(reserved));
                 selected = [];
                 $scope.user.name='';
-                $scope.user.numofseats=0;
+                $scope.user.numofseats='';
                 $scope.enableDisbaleLayout=false;
                 alert("Your Booking successfully completed.");
+                form.$setPristine();
+                form.$setUntouched();
             } else {
                 alert("No seats selected!");
             }
